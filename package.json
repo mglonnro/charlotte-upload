@@ -1,0 +1,15 @@
+{
+  "name": "@gml/charlotte-upload",
+  "version": "0.0.1",
+  "description": "",
+  "main": "upload.js",
+  "dependencies": {
+    "request": "^2.88.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT"
+}
