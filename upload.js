@@ -5,12 +5,13 @@ const fs = require("fs");
 const path = require("path");
 const Hasher = require("./hasher");
 
-if (process.argv.length < 3) {
-  console.error("usage: upload.js <file>");
+if (process.argv.length < 4) {
+  console.error("usage: upload.js <boatId> <file>");
   process.exit(1);
 }
 
-let filename = process.argv[2];
+let boatId = process.argv[2];
+let filename = process.argv[3];
 console.log("File to upload:", filename);
 
 const FILEDIR = path.dirname(filename);
@@ -22,7 +23,7 @@ hasher
   .getHash(FILEDIR + "/" + FILENAME)
   .then(hash => {
     var r = request.post(
-      "http://localhost:3100/boat/abc/chunk?hash=" +
+      "http://localhost:3100/boat/" + boatId + "/chunk?hash=" +
         hash +
         "&filename=" +
         FILENAME, (err, res, body) => {
@@ -34,9 +35,7 @@ hasher
 	  }
 	}
     );
-    // See http://nodejs.org/api/stream.html#stream_new_stream_readable_options
-    // for more information about the highWaterMark
-    // Basically, this will make the stream emit smaller chunks of data (ie. more precise upload state)
+
     var upload = fs.createReadStream(FILEDIR + "/" + FILENAME, {
       highWaterMark: 65536
     });
