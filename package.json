@@ -10,6 +10,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": {
+    "charlotte-upload": "./upload.js"
+  },
   "author": "",
   "license": "MIT"
 }

@@ -10,7 +10,7 @@ class Hasher {
         var stream = fs.createReadStream(f);
 
         stream.on("data", function(data) {
-          hash.update(data, "utf8");
+          hash.update(data);
         });
 
         stream.on("end", function() {

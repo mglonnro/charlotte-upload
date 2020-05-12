@@ -16,6 +16,7 @@ console.log("File to upload:", filename);
 
 const FILEDIR = path.dirname(filename);
 const FILENAME = path.basename(filename);
+const SERVER = "https://community.nakedsailor.blog/timescaledb";
 
 var hasher = new Hasher();
 
@@ -23,7 +24,7 @@ hasher
   .getHash(FILEDIR + "/" + FILENAME)
   .then(hash => {
     var r = request.post(
-      "http://localhost:3100/boat/" + boatId + "/chunk?hash=" +
+      SERVER + "/boat/" + boatId + "/chunk?hash=" +
         hash +
         "&filename=" +
         FILENAME, (err, res, body) => {
